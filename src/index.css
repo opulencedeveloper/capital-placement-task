@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+
+}
+
+input[type=checkbox].checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    outline: none;
+    border: 2px solid #ccc; 
+    border-radius: 5px;
+  }
+  
+  .checkbox:checked {
+    background-image: url('/public/asset/icons/checked.svg'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .label {
+    margin-left: 5px;
+  }
+
+  .select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('../public/asset/icons/drop-down-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 25px center;
+}
+
+
+
+
+  
+  
