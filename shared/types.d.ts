@@ -57,7 +57,15 @@ export interface PersonalInfoProps {
   addQuestion?: () => void;
 }
 
-
 export interface ProfileProps {
   addQuestion?: () => void;
+}
+
+export interface AdditionalQuestionsProps {
+  addQuestion?: () => void;
+}
+
+export interface ToggleButtonProps {
+  buttonStateValue: boolean;
+  id: string;
 }

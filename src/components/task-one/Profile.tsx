@@ -22,7 +22,7 @@ const Profile: React.FC<ProfileProps> = ({ addQuestion }) => {
                     <RadioButton />
                     <p>Internal</p> </div>
                 <div className="flex space-x-2 items-center text-[15px]">
-                    <ToggleButton />
+                    <ToggleButton buttonStateValue={true} id={label}/>
                     <p>Internal</p>
                 </div>
             </div>

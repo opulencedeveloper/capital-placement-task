@@ -3,7 +3,6 @@ import IconButton from "../UI/IconButton";
 import TextRadioButton from "../UI/TextRadioButton";
 import ToggleButton from "../UI/ToggleButton";
 
-
 import { PersonalInfoProps } from "../../../shared/types";
 
 const personalInfoLabel: string[] = [
@@ -28,7 +27,7 @@ const PersonalInformation: React.FC<PersonalInfoProps> = ({ addQuestion }) => {
             {index > 2 && <div className="flex space-x-10">
                 <TextRadioButton  label="Internal" />
                 <div className="flex space-x-2 items-center text-[15px]">
-                    <ToggleButton />
+                    <ToggleButton id={label} buttonStateValue={true}/>
                     <p>Internal</p>
                 </div>
             </div>}

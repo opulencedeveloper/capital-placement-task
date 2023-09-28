@@ -1,21 +1,23 @@
 import { useState } from "react";
 
+import { ToggleButtonProps } from "../../../shared/types";
+
 let buttonColor = "bg-green-500";
 
-const ToggleButton = () => {
-    const [buttonState, setButtonState] = useState(true);
+const ToggleButton : React.FC<ToggleButtonProps> = ({ buttonStateValue, id }) => {
+    const [buttonState, setButtonState] = useState(buttonStateValue);
     const toggleButton = () => {
         setButtonState((prevState) => !prevState);
         buttonColor = buttonState ? "bg-white" : "bg-green-500";
     };
     return <label
-        htmlFor="toggle-button"
+        htmlFor={id}
         className="flex justify-end items-center cursor-pointer w-[49px]"
     >
         <div className="relative w-[49px]">
             <input
                 type="checkbox"
-                id="toggle-button"
+                id={id}
                 className="hidden"
                 checked={buttonState}
                 onChange={toggleButton}

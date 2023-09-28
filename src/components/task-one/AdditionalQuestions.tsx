@@ -3,6 +3,8 @@ import CommonLayout from "../UI/CommonLayout";
 import CommonQuestionLayout from "../UI/CommonQuestionLayout";
 import IconButton from "../UI/IconButton";
 
+import { AdditionalQuestionsProps } from "../../../shared/types";
+
 const additonalQuestions = [
     { title: "Paragraph", question: "Please tell me about yourself in less than 500 words" },
     { title: "Dropdown", question: "Please select year of graduation from list below" },
@@ -11,7 +13,7 @@ const additonalQuestions = [
 
 
 
-const AdditionalQuestions = () => {
+const AdditionalQuestions: React.FC<AdditionalQuestionsProps> = ({ addQuestion }) => {
     return <CommonLayout title="Additional Question">
         {additonalQuestions.map((data, index) => <div key={index} className="mt-4 border-b border-secondary-0  pb-7 w-[90%]">
             <div className="flex justify-between items-center">
@@ -42,7 +44,7 @@ const AdditionalQuestions = () => {
                 </div></>}
         </div>
         )}
-        <div className="w-[90%] mt-7"><IconButton iconUrl="./asset/icons/add-icon.svg" titleStyle="font-semibold text-[15px]" title="Add a question" /></div>
+        <div className="w-[90%] mt-7"><IconButton onClick={addQuestion} iconUrl="./asset/icons/add-icon.svg" titleStyle="font-semibold text-[15px]" title="Add a question" /></div>
     </CommonLayout>
 }
 

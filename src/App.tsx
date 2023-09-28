@@ -28,7 +28,7 @@ function App() {
         <ImageUpload />
         <PersonalInformation addQuestion={switchQuestionHander}/>
         <Profile addQuestion={switchQuestionHander}/>
-        <AdditionalQuestions />
+        <AdditionalQuestions addQuestion={switchQuestionHander}/>
       </div>
     </div>
   );
