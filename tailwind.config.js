@@ -9,12 +9,15 @@ module.exports = {
           1: "#D0F7FA",
           2: "#087B2F",
           3: "#9C4DE2", 
+          4: "#EDF4FF" 
         },
         secondary: {
-          0: "#C4C4C4",
+          0: "#C4C4C4", 
           1: "#979797",
-          2: "#CCCCCC",
-          3: "#A0A0A0"
+          2: "#CCCCCC", 
+          3: "#A0A0A0",
+          4: "#D9D9D9",
+          5: "#D7E5FD"
         },
         errorColor: {
           0: "#A80000"

@@ -17,7 +17,19 @@ const useHttp = () => {
         headers: {
             "Content-Type": "application/json",
           },
-        body: JSON.stringify(requestConfig.body)
+        body: JSON.stringify(
+          {
+            body: {
+                data: {
+                    attributes: {
+                        customisedQuestions: [
+                          requestConfig.body
+                          ]
+                    }
+                }
+            },
+        }
+          )
       }
     );
       if (response.ok) {

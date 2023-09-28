@@ -1,65 +1,72 @@
-import { useState } from "react";
-
-import ButtonLayout from "../UI/ButtonLayout";
-import CommonLayout from "../UI/CommonLayout"
-import { QuestionProps } from "../../../shared/types";
+import React, { useState } from "react";
+import CommonLayout from "./task-one-ui/CommonLayout";
+import { CommonProps } from "../../../shared/types";
 import Paragraph from "./question-types/Paragraph";
 import MultipleChoice from "./question-types/MultipleChoice";
 import DropDown from "./question-types/DropDown";
 import YesNo from "./question-types/YesNo";
 
-const questionsType: string[] = [
-    "Paragraph",
-    "Short Answer",
-    "Yes/No",
-    "Dropdown",
-    "Multiple choice",
-    "Date",
-    "Number",
-    "File Upload",
-    "Video question"
-];
+enum QuestionType {
+  Paragraph = "Paragraph",
+  ShortAnswer = "Short Answer",
+  YesNo = "Yes/No",
+  Dropdown = "Dropdown",
+  MultipleChoice = "Multiple choice",
+  Date = "Date",
+  Number = "Number",
+  FileUpload = "File Upload",
+  VideoQuestion = "Video question",
+}
 
-const Questions: React.FC<QuestionProps> = ({ deleteQuestion }) => {
-    const [selection, setSelection] = useState("");
+type QuestionComponents = Record<QuestionType, React.FC<CommonProps>>;
 
-    const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = event.target.value;
-        setSelection(selectedValue);
-    }
-    return <CommonLayout title="Questions">
-        <div className="w-[90%] h-max mt-5">
-            <p className="text-[20px] font-semibold">
-                Type
-            </p>
-            <select onChange={onChangeHandler} className=" select w-full text-[16px] h-[60px] border mt-3 border-black outline-none rounded-[5px] pl-5 space-y-8 ">
-            <option value="default" selected>Choose an option</option>
-                {questionsType.map((questionData, index) => <option
-                    className="hover:bg-primary-3"
-                    key={index}
-                    value={questionData}>
-                    {questionData}
-                </option>)}
+const questionComponents: QuestionComponents = {
+  [QuestionType.Paragraph]: Paragraph,
+  [QuestionType.ShortAnswer]: () => null, 
+  [QuestionType.YesNo]: YesNo,
+  [QuestionType.Dropdown]: DropDown,
+  [QuestionType.MultipleChoice]: MultipleChoice,
+  [QuestionType.Date]: () => null, 
+  [QuestionType.Number]: () => null,
+  [QuestionType.FileUpload]: () => null, 
+  [QuestionType.VideoQuestion]: () => null, 
+};
 
-            </select>
+const Questions: React.FC<CommonProps> = ({ deleteQuestion }) => {
+  const [selection, setSelection] = useState<QuestionType | "">("");
 
-            {selection === "Paragraph" && <Paragraph />}
-            {selection === "Multiple choice" && <MultipleChoice />}
-            {selection === "Dropdown" && <DropDown />}
-            {selection === "Yes/No" && <YesNo />}
+  const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value as QuestionType | "";
+    setSelection(selectedValue);
+  };
 
-            <ButtonLayout
-                deleteQuestion={deleteQuestion}
-                saveQuestion={() => { }}
-                layoutStyle="flex justify-between pt-10 pb-7"
-                iconUrl="./asset/icons/delete-icon.svg"
-                iconButtonTitleStyle="font-semibold text-[15px] text-errorColor-0"
-                iconTitle="Delete Question"
-            />
-        </div>
+  const QuestionComponent = selection ? questionComponents[selection] : undefined;
+
+  return (
+    <CommonLayout title="Questions">
+      <div className="w-[90%] h-max mt-5 pb-7">
+        <p className="text-[20px] font-semibold">Type</p>
+        <select
+          onChange={onChangeHandler}
+          className="select w-full text-[16px] h-[60px] border mt-3 border-black outline-none rounded-[5px] pl-5 space-y-8"
+        >
+          <option value="" selected>
+            Choose an option
+          </option>
+          {Object.values(QuestionType).map((questionType, index) => (
+            <option
+              className="hover:bg-primary-3"
+              key={index}
+              value={questionType}
+            >
+              {questionType}
+            </option>
+          ))}
+        </select>
+        {QuestionComponent && <QuestionComponent deleteQuestion={deleteQuestion} />}
+      </div>
     </CommonLayout>
-}// 
+  );
+};
 
-export default Questions
-
-
+export default Questions;

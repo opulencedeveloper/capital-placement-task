@@ -1,4 +1,5 @@
 type ChildrenProps = React.ReactNode;
+type onChangeType = ChangeEvent<HTMLInputElement>;
 
 export interface CommonLayoutProps {
   children: ChildrenProps;
@@ -38,18 +39,22 @@ export interface QuestionTypeProps {
 export interface TextRadioButtonProps {
   label: string;
   layoutStyle?: string;
+  checkboxHandler?: (event: onChangeType) => void;
+  isChecked?: boolean;
 }
 
 export interface InputTextProps {
   label: string;
   inputPlaceHolder: string;
+  onChange?: (event: onChangeType) => void;
 }
 
 export interface CommonQuestionLayoutProps {
   layoutStyle?: string;
+  onChange?: (index: number, event: onChangeType) => void;
 }
 
-export interface QuestionProps {
+export interface CommonProps {
   deleteQuestion?: () => void;
 }
 
@@ -68,4 +73,27 @@ export interface AdditionalQuestionsProps {
 export interface ToggleButtonProps {
   buttonStateValue: boolean;
   id: string;
+}
+
+export interface RadioButtonProps {
+  onChange?: (event: onChangeType) => void;
+  isChecked?: boolean;
+}
+
+export interface DropdownQuestion {
+  type: string;
+  question: string;
+  other: boolean;
+  choices: string[];
+}
+
+export interface ParagraphQuestion {
+  type: string;
+  question: string;
+}
+
+export interface YesNoQuestion {
+  type: string;
+  question: string;
+  disqualify: boolean;
 }

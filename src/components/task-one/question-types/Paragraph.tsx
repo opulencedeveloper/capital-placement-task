@@ -1,25 +1,53 @@
-import useHttp from "../../../hooks/useHttp";
-import InputText from "../../UI/InputText";
+import React, { useState } from "react";
 
-const Paragraph = () => {
+import InputText from "../task-one-ui/InputText";
+import ButtonLayout from "../task-one-ui/ButtonLayout";
+import { CommonProps, ParagraphQuestion } from "../../../../shared/types";
+import useHttp from "../../../hooks/useHttp";
+
+
+const Paragraph: React.FC<CommonProps> = ({ deleteQuestion }) => {
+    const [question, setQuestion] = useState<string>("");
     const { isLoading, error, sendRequest: postParagraphQuestion } = useHttp();
 
     const postParagraphQuestionRequestResponse = (res: any) => {
-        const { status, message } = res;
-        if (status === "success") {
-        }
+        console.log(res);
     };
 
-    postParagraphQuestion(
-        {
-            body: {
-                //appointmentid: appointmentId,
-            },
-        },
-        postParagraphQuestionRequestResponse
-    );
+    const saveParagraphQuestionHandler = () => {
+        if (question === "") return;
+        console.log(question);
 
-    return <InputText label="Question" inputPlaceHolder="Type here" />
-}
+        const paragraphQuestion: ParagraphQuestion = {
+            type: "Paragraph",
+            question: question,
+        };
+
+        postParagraphQuestion(paragraphQuestion, postParagraphQuestionRequestResponse);
+    };
+
+    const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedValue = event.target.value;
+        setQuestion(selectedValue);
+    };
+
+    return (
+        <>
+            <InputText
+                onChange={onChangeHandler}
+                label="Question"
+                inputPlaceHolder="Type here"
+            />
+            <ButtonLayout
+                deleteQuestion={deleteQuestion}
+                saveQuestion={saveParagraphQuestionHandler}
+                layoutStyle="flex justify-between pt-10"
+                iconUrl="./asset/icons/delete-icon.svg"
+                iconButtonTitleStyle="font-semibold text-[15px] text-errorColor-0"
+                iconTitle="Delete Question"
+            />
+        </>
+    );
+};
 
 export default Paragraph;

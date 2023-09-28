@@ -1,39 +1,30 @@
-import { useState } from "react";
-import Navigation from "./components/UI/Navigation";
-import Portal from "./components/UI/Portal";
-import AdditionalQuestions from "./components/task-one/AdditionalQuestions";
-import ImageUpload from "./components/task-one/ImageUpload";
-import MyHeader from "./components/task-one/MyHeader";
-import PersonalInformation from "./components/task-one/PersonalInformation";
-import Profile from "./components/task-one/Profile";
-import Questions from "./components/task-one/Questions";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-
-
-
+import TaskOne from "./pages/TaskOne";
+import TaskTwo from "./pages/TaskTwo";
+import Layout from "./components/task-two/layout/Layout";
 
 function App() {
-  const [showQuestion, setShowQuestion] = useState(false);
+  const location = useLocation();
+  const path = location.pathname;
 
-  const switchQuestionHander = () => {
-    setShowQuestion(prev => !prev);
+  if (path === "/task-two") {
+    return (
+      <Layout>
+        <Routes>
+          <Route path="/task-two" element={<TaskTwo />} />
+        </Routes>
+      </Layout>
+    );
   }
 
   return (
-    <div className="flex text-3xl h-screen overflow-hidden">
-      {showQuestion && <Portal><Questions deleteQuestion={switchQuestionHander} /></Portal>}
-      <Navigation />
-      <div className="w-full overflow-auto">
-        <MyHeader />
-        <ImageUpload />
-        <PersonalInformation addQuestion={switchQuestionHander}/>
-        <Profile addQuestion={switchQuestionHander}/>
-        <AdditionalQuestions addQuestion={switchQuestionHander}/>
-      </div>
-    </div>
+    <Routes>
+      <Route index element={<TaskOne />} />
+    </Routes>
+
   );
 }
 
+
 export default App;
-
-

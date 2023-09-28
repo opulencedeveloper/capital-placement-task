@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-const RadioButton = () => {
+import { RadioButtonProps } from "../../../../shared/types";
+
+const RadioButton: React.FC<RadioButtonProps> = ({ onChange, isChecked }) => {
     const [val, setVal] = useState(false);
+
     const checkboxHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         //const id = event.target.id;
         const value = event.target.checked;
@@ -9,9 +12,9 @@ const RadioButton = () => {
     };
     return <input
         type="checkbox"
-        checked={val}
+        checked={isChecked || val}
         className="checkbox"
-        onChange={checkboxHandler}
+        onChange={onChange || checkboxHandler}
     />
 }
 
