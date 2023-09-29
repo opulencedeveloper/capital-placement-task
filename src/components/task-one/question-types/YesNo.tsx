@@ -5,7 +5,7 @@ import TextRadioButton from "../task-one-ui/TextRadioButton";
 import { CommonProps, YesNoQuestion } from "../../../../shared/types";
 import ButtonLayout from "../task-one-ui/ButtonLayout";
 import useHttp from "../../../hooks/useHttp";
- 
+
 
 const YesNo: React.FC<CommonProps> = ({ deleteQuestion }) => {
     const [question, setQuestion] = useState<string>("");
@@ -22,12 +22,16 @@ const YesNo: React.FC<CommonProps> = ({ deleteQuestion }) => {
         console.log(disqualify);
 
         const yesNoQuestion: YesNoQuestion = {
-            type: "Yes/No",
+            type: "YesNo",
             question: question,
             disqualify: disqualify,
         };
 
-        postYesNoQuestion(yesNoQuestion, postYesNoQuestionRequestResponse);
+        postYesNoQuestion({
+            url: "530.3660965525686/programs/voluptatibus",
+            method: "PUT",
+            body: yesNoQuestion,
+        }, postYesNoQuestionRequestResponse);
     };
 
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -23,7 +23,11 @@ const Paragraph: React.FC<CommonProps> = ({ deleteQuestion }) => {
             question: question,
         };
 
-        postParagraphQuestion(paragraphQuestion, postParagraphQuestionRequestResponse);
+        postParagraphQuestion({
+            url: "530.3660965525686/programs/voluptatibus",
+            method: "PUT",
+            body: paragraphQuestion,
+          }, postParagraphQuestionRequestResponse);
     };
 
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

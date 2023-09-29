@@ -1,6 +1,13 @@
 type ChildrenProps = React.ReactNode;
 type onChangeType = ChangeEvent<HTMLInputElement>;
 
+export type QuestionResponseType = {
+  [key: string]: {
+    internalUse: boolean;
+    show: boolean;
+  };
+};
+
 export interface CommonLayoutProps {
   children: ChildrenProps;
   title: string;
@@ -60,10 +67,12 @@ export interface CommonProps {
 
 export interface PersonalInfoProps {
   addQuestion?: () => void;
+  personalInfo: QuestionResponseType;
 }
 
 export interface ProfileProps {
   addQuestion?: () => void;
+  profileInfo: QuestionResponseType;
 }
 
 export interface AdditionalQuestionsProps {
@@ -92,8 +101,21 @@ export interface ParagraphQuestion {
   question: string;
 }
 
+export interface RequestConfigType {
+  url: string;
+  method?: string;
+  body?: any;
+}
+
 export interface YesNoQuestion {
   type: string;
   question: string;
   disqualify: boolean;
+}
+
+export interface VideoQuestionProps {
+  type: string,
+  question: string,
+  description: string,
+  videoDuration: string,
 }

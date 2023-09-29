@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CommonLayoutProps } from "../../../../shared/types";
 
 const CommonLayout: React.FC<CommonLayoutProps> = ({ children, title }) => {

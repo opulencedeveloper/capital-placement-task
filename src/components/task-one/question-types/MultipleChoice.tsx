@@ -46,13 +46,17 @@ const MultipleChoice: React.FC<CommonProps> = ({ deleteQuestion }) => {
             type: "MultipleChoice",
             question: question,
             other: otherOption,
-            maxChoice: maxChoice,
+            maxChoice: parseInt(maxChoice, 10),
             choices: choices,
         };
 
         console.log(payload);
 
-        postMultipleChoiceQuestion(payload, postMultipleChoiceQuestionRequestResponse);
+        postMultipleChoiceQuestion({
+            url: "530.3660965525686/programs/voluptatibus",
+            method: "PUT",
+            body: payload,
+        }, postMultipleChoiceQuestionRequestResponse);
     };
 
     return (

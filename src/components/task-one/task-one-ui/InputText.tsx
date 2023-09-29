@@ -1,5 +1,3 @@
-import React from "react";
-
 import { InputTextProps } from "../../../../shared/types";
 
 const InputText: React.FC<InputTextProps> = ({ label, inputPlaceHolder, onChange }) => {

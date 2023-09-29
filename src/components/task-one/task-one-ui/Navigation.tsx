@@ -2,7 +2,7 @@ const Navigation = () => {
     const iconStyle = "w-[36px] h-[35px] mb-8";
 
     return (
-        <div className="w-[118px] shadow-xl h-full flex flex-col mt-12 items-center">
+        <div className="w-[118px] shadow-xl flex flex-col mt-12 items-center">
             <div className="mb-10">
                 <div className={iconStyle}>
                     <img src="./asset/icons/handburger-icon.svg" className="h-full w-full" alt="hamburger icon" />

@@ -1,50 +1,38 @@
-import React from "react";
-
 import CommonLayout from "./task-one-ui/CommonLayout";
 import IconButton from "./task-one-ui/IconButton";
 import TextRadioButton from "./task-one-ui/TextRadioButton";
 import ToggleButton from "./task-one-ui/ToggleButton";
 import { PersonalInfoProps } from "../../../shared/types";
+import { camelCaseConverter } from "../../helpers/camelCaseConverter";
 
-const personalInfoLabel: string[] = [
-    "First Name",
-    "Last Name",
-    "Email",
-    "Phone",
-    "Nationality",
-    "Current Residence",
-    "ID Number",
-    "Date of Birth",
-    "Gender",
-];
 
-const PersonalInformation: React.FC<PersonalInfoProps> = ({ addQuestion }) => {
+const PersonalInformation: React.FC<PersonalInfoProps> = ({ addQuestion, personalInfo }) => {
+    console.log(personalInfo)
     return (
         <CommonLayout title="Personal Information">
-            {personalInfoLabel.map((label, index) => (
-                <div
-                    key={index}
+            {Object.keys(personalInfo).map((key) => {
+                return key !== "personalQuestions" && <div
+                    key={key}
                     className="flex justify-between items-center border-b border-secondary-0 pt-2 pb-4 w-[90%]"
                 >
                     <p className="text-[20px] font-semibold">
-                        {label}
-                        {index === 3 && (
+                        {camelCaseConverter(key)}
+                        {key === "phoneNumber" && (
                             <span className="text-sm pl-1 font-medium">
                                 (without dial code)
                             </span>
                         )}
                     </p>
-                    {index > 2 && (
-                        <div className="flex space-x-10">
-                            <TextRadioButton label="Internal" />
-                            <div className="flex space-x-2 items-center text-[15px]">
-                                <ToggleButton id={label} buttonStateValue={true} />
-                                <p>Internal</p>
-                            </div>
+
+                    <div className="flex space-x-10">
+                        <TextRadioButton isChecked={personalInfo[key].internalUse} label="Internal" />
+                        <div className="flex space-x-2 items-center text-[15px]">
+                            <ToggleButton id={key} buttonStateValue={personalInfo[key].show} />
+                            <p className="text-secondary-5">Hide</p>
                         </div>
-                    )}
+                    </div>
                 </div>
-            ))}
+            })}
             <div className="w-[90%] mt-7">
                 <IconButton
                     onClick={addQuestion}
@@ -58,3 +46,6 @@ const PersonalInformation: React.FC<PersonalInfoProps> = ({ addQuestion }) => {
 };
 
 export default PersonalInformation;
+
+
+

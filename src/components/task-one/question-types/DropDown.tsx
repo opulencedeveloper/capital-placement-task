@@ -46,7 +46,11 @@ const DropDown: React.FC<CommonProps> = ({ deleteQuestion }) => {
 
         console.log(dropdownQuestion);
 
-        postDropdownQuestion(dropdownQuestion, postDropDownQuestionRequestResponse);
+        postDropdownQuestion({
+            url: "530.3660965525686/programs/voluptatibus",
+            method: "PUT",
+            body: dropdownQuestion,
+        }, postDropDownQuestionRequestResponse);
     };
 
     return (

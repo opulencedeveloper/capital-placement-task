@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IconButtonProps } from "../../../../shared/types";
 
 const IconButton: React.FC<IconButtonProps> = ({ iconUrl, title, titleStyle, onClick }) => {
