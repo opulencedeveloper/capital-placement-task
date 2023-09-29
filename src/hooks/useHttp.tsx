@@ -135,7 +135,7 @@ const useHttp = () => {
       if (err instanceof Error) {
         console.log(err);
         if (err.message === "Failed to fetch") {
-          setError("Network error! Please check your internet connection.");
+          setError("Not Connected.");
         } else {
           setError("Something went wrong! Reload");
         }
